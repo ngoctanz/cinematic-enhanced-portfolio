@@ -1,104 +1,46 @@
 # Cinematic Enhanced Portfolio
 
-An AI-agent skill for designing and building cinematic developer portfolios with a premium editorial identity, scroll choreography, purposeful 3D visuals, and practical performance budgets.
+An AI-agent skill for building reusable 3D effects, scroll choreography, and animation-heavy web experiences with practical performance budgets and minimal clean-code organization.
 
-The skill distills the visual system of a production Next.js portfolio into reusable guidance for Codex and other skill-compatible coding agents.
+The skill distills the effects architecture of a production Next.js portfolio into reusable guidance for Codex and other skill-compatible coding agents. It adapts to the host project's colors, typography, layout, and component language.
 
 ## What This Skill Creates
 
 Use it to build or improve:
 
-- cinematic portfolio homepages;
-- immersive hero sections;
+- immersive hero and landing-page effects;
 - 3D developer and creative portfolios;
 - scroll-driven storytelling;
-- editorial project showcases;
 - WebGL particle and shader effects;
-- premium transitions and micro-interactions;
+- GSAP transitions and micro-interactions;
 - animation-heavy React or Next.js interfaces;
-- performance and visual-consistency audits.
+- performance and lifecycle audits;
+- clean organization of animation code.
 
-It is not a component library or fixed template. The skill teaches the agent how to reproduce the design language while adapting composition and implementation to each project.
+It is not a fixed template, palette, or component library. The skill teaches the agent how to choose, create, organize, and optimize effects without replacing the product's existing identity.
 
-## Design Direction
+## Brand-Adaptive by Default
 
-The visual style combines:
+The skill does **not** require:
 
-- Awwwards-inspired cinematic staging;
-- dark sci-fi environments with particles and shaders;
-- clean editorial sections on white backgrounds;
-- oversized geometric typography;
-- expressive italic serif accents;
-- asymmetric layouts and large whitespace;
-- warm amber branding;
-- restrained agency-style motion.
+- black or white backgrounds;
+- amber accents;
+- a specific gradient;
+- Outfit or Playfair Display;
+- dark mode;
+- an Awwwards-style page layout;
+- a full visual redesign.
 
-The typical experience alternates between immersive and informational modes:
+Before generating an effect, the agent inspects the host project's:
 
-```text
-Dark spectacle
-→ Spatial tech stack
-→ Theme transition
-→ White editorial content
-→ Scroll-driven 3D story
-→ Cinematic project theatre
-→ Editorial project list
-→ Dark closing CTA
-```
+- CSS variables and theme tokens;
+- background luminance and contrast;
+- fonts and type scale;
+- radius, border, and shadow language;
+- existing animation dependencies;
+- responsive layout and reduced-motion policy.
 
-Dark sections create identity and emotion. White sections provide clarity, proof, and breathing room.
-
-## Color System
-
-| Role | Color | Usage |
-| --- | --- | --- |
-| Cinematic background | `#020202` | Hero, skill stage, closing CTA |
-| Root black | `#000000` | Page foundation |
-| Elevated dark | `#0a0a0a`, `#111111` | Cards, modal, controls |
-| Editorial paper | `#ffffff` | About, evolution, project sections |
-| Primary ink | `#111111`, `#222222` | Headings on white |
-| Supporting gray | `#555555`, `#666666` | Descriptions and metadata |
-| Separator | `#b0b5b9` | Quiet borders and rules |
-| Media surface | `#e0e3e5` | Project image backgrounds |
-| Signature amber | `#ffaa40` | Brand accent |
-| Deep amber | `#ff8800`, `#d97706` | Gradients, icons, contrast |
-
-Amber is treated as a signal rather than a large background fill. It appears in particles, highlighted words, focus rings, separators, icons, and primary calls to action.
-
-## Typography
-
-The source system pairs:
-
-- **Outfit** — geometric sans for display headings, body copy, navigation, and controls.
-- **Playfair Display** — expressive serif, usually italic, for emotional emphasis.
-- **Monospace** — uppercase technical labels, categories, indexes, and secondary actions.
-
-Typical treatment:
-
-```text
-Outfit oversized + tight tracking
-Playfair italic for one meaningful phrase
-Mono uppercase + wide tracking for metadata
-```
-
-The skill avoids adding extra decorative fonts. Hierarchy comes from scale, weight, whitespace, and contrast.
-
-## Layout Language
-
-The included guidelines cover:
-
-- full-viewport hero stages;
-- left-copy/right-visual split compositions;
-- sticky multi-viewport narratives;
-- editorial `45/55` project layouts;
-- oversized typography used as scenery;
-- full-bleed WebGL project theatres;
-- 3D perspective marquees;
-- image-led case-study rows;
-- dark-to-light blind transitions;
-- responsive mobile recomposition.
-
-Mobile layouts are treated as their own composition: visuals are reduced, copy moves to safer positions, contrast scrims are introduced, and sticky splits collapse into readable vertical flows.
+Shader uniforms, glows, fog, particles, trails, and scrims are derived from those tokens. The original amber/black implementation remains only as an optional case study.
 
 ## Motion System
 
@@ -115,7 +57,7 @@ The skill gives each animation tool a clear responsibility:
 | Stars, float, textures, helper geometry | React Three Drei |
 | Small isolated particle canvas | OGL |
 
-### GSAP Patterns
+### Available GSAP Patterns
 
 The guidance includes:
 
@@ -125,7 +67,7 @@ The guidance includes:
 - responsive animation through `gsap.matchMedia()`;
 - pinned and scrubbed `ScrollTrigger` sections;
 - synchronized movement along a 3D helix;
-- theme transitions using staggered blinds;
+- transitions using staggered blinds or project-specific shapes;
 - high-frequency pointer tracking through `gsap.quickTo()`;
 - correct Lenis and GSAP ticker integration;
 - reduced-motion behavior.
@@ -148,7 +90,7 @@ The skill documents reusable patterns for:
 - scroll progress passed through mutable refs;
 - CSS perspective when real WebGL is unnecessary.
 
-The original visual vocabulary includes:
+Reusable source effects include:
 
 | Effect | Technique |
 | --- | --- |
@@ -159,7 +101,33 @@ The original visual vocabulary includes:
 | Spatial skill wall | CSS 3D transforms and marquees |
 | Ambient particles | Lightweight OGL point cloud |
 
-3D must carry a narrative role—continuity, architecture, evolution, or project exploration—not exist as decoration alone.
+Every effect can be recolored and recomposed for the current product. 3D must carry a narrative or interaction role rather than exist as decoration alone.
+
+## Clean Code and Ponytail
+
+The skill includes a minimal engineering workflow inspired by Ponytail:
+
+```text
+Skip speculative work
+→ Reuse repository code
+→ Use stdlib/browser APIs
+→ Use native CSS/SVG/Canvas
+→ Use an installed dependency
+→ Write the smallest local implementation
+```
+
+Its code-organization rules include:
+
+- understand the complete render and scroll flow before editing;
+- fix root causes at the shared boundary;
+- keep one owner per animation property;
+- keep rapidly changing values out of React state;
+- generate geometry and buffers once;
+- avoid one-use factories, wrappers, and interfaces;
+- split files only at real lifecycle or reuse boundaries;
+- add one focused check for non-trivial geometry or state mapping;
+- document deliberate ceilings with a `ponytail:` comment;
+- do not add libraries for effects native CSS or browser APIs already cover.
 
 ## Performance Guidelines
 
@@ -213,13 +181,15 @@ skills/tan-cinematic-portfolio/
 │   └── openai.yaml
 └── references/
     ├── design-system.md
+    ├── clean-code.md
     ├── motion-and-3d.md
     ├── performance.md
     └── project-profile.md
 ```
 
 - `SKILL.md` — workflow, composition rules, motion ownership, 3D rules, and quality gate.
-- `design-system.md` — palette, typography, spacing, shapes, layouts, and component language.
+- `design-system.md` — adaptive theming, token mapping, blending, composition, and fallback rules.
+- `clean-code.md` — Ponytail decision ladder, file organization, ownership, lifecycle, and root-cause fixes.
 - `motion-and-3d.md` — animation responsibilities, GSAP choreography, shader patterns, and scroll architecture.
 - `performance.md` — rendering budget, lifecycle checklist, performance risks, and accessibility.
 - `project-profile.md` — source stack, page sequence, installed skills, strengths, and known inconsistencies.
@@ -368,17 +338,17 @@ The core `SKILL.md` and reference files are cross-agent instructions. `agents/op
 Invoke the skill explicitly:
 
 ```text
-Use $tan-cinematic-portfolio to design a cinematic developer portfolio.
+Use $tan-cinematic-portfolio to add a brand-adaptive, high-performance 3D effect.
 ```
 
 Example requests:
 
 ```text
-Use $tan-cinematic-portfolio to redesign this portfolio without changing its content.
+Use $tan-cinematic-portfolio to add a particle hero while preserving this project's visual identity.
 ```
 
 ```text
-Use $tan-cinematic-portfolio to create a full-screen hero with an amber particle ribbon.
+Use $tan-cinematic-portfolio to create a particle ribbon using the project's existing color tokens.
 ```
 
 ```text
@@ -386,7 +356,7 @@ Use $tan-cinematic-portfolio to audit the GSAP, ScrollTrigger, and WebGL perform
 ```
 
 ```text
-Use $tan-cinematic-portfolio to build an editorial project showcase that transitions from black to white.
+Use $tan-cinematic-portfolio to organize these GSAP and Three.js effects with the fewest clean abstractions.
 ```
 
 ```text
@@ -417,6 +387,8 @@ Do not install all of these automatically. Reuse the current project stack and a
 One visual idea per section.
 One owner per animation.
 One dominant focal object per viewport.
+The host project owns its colors and typography.
+Reuse and native features before new dependencies.
 Performance and accessibility before spectacle.
 ```
 

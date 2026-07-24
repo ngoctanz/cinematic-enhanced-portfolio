@@ -26,7 +26,7 @@ Do not let two libraries control the same property.
 
 ## Source 3D Vocabulary
 
-- Infinity ribbon: 6,000 GPU points following a parametric figure-eight, additive amber/white shader, slow flow.
+- Infinity ribbon: 6,000 GPU points following a parametric figure-eight, source-themed luminous shader, slow flow.
 - Liquid ribbon: 3,500 points morphing between wave, helix, and infinity according to scroll progress.
 - Particle core: 2,700 points morphing between galaxy, gyroscope/atom, and Fibonacci sphere.
 - Project helix: screenshots mapped onto cylinder segments and moved along a helix by synchronized rotation and Y translation.
@@ -40,7 +40,7 @@ Do not let two libraries control the same property.
 - Use `gl_PointCoord` and discard outside a circle in the fragment shader.
 - Use squared distance when the exact length is unnecessary.
 - Disable depth writes for transparent points.
-- Choose additive blending for luminous dust and normal blending for readable particles on white.
+- Choose additive blending for luminous dust on suitable dark surfaces and normal blending when the background makes additive bloom unreadable.
 - Interpolate narrative states branchlessly with `smoothstep` and `mix`.
 
 ## Scroll Architecture

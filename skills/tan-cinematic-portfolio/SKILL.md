@@ -1,33 +1,43 @@
 ---
 name: tan-cinematic-portfolio
-description: Design, build, audit, or extend cinematic developer portfolios with Tan's near-black and editorial-white visual system, amber accents, expressive serif typography, scroll choreography, restrained WebGL/Three.js scenes, and strict performance budgets. Use for portfolio pages, landing sections, project showcases, 3D hero visuals, motion systems, visual consistency reviews, or performance reviews of animation-heavy React/Next.js frontends.
+description: Design, build, audit, or extend cinematic web experiences with reusable 3D/WebGL effects, GSAP scroll choreography, adaptive visual theming, strict performance budgets, and minimal clean-code organization. Use for portfolio pages, landing sections, 3D hero visuals, particle or shader effects, motion systems, animation architecture, or performance reviews of animation-heavy frontends.
 ---
 
 # Tan Cinematic Portfolio
 
-Create a premium, cinematic portfolio without turning every section into a demo reel. Preserve clarity, accessibility, and performance before spectacle.
+Create cinematic effects that adapt to the host project's brand. Preserve clarity, accessibility, maintainability, and performance before spectacle.
 
 ## Workflow
 
 1. Inspect the existing stack, components, assets, tokens, and animation ownership before editing.
-2. Define the page's one visual idea and one hero effect. Avoid stacking unrelated effects.
-3. Read [design-system.md](references/design-system.md) for color, type, layout, and component rules.
-4. Read [motion-and-3d.md](references/motion-and-3d.md) when adding animation, scroll choreography, shaders, particles, or WebGL.
-5. Read [performance.md](references/performance.md) before implementing or reviewing any continuous animation.
-6. Reuse the project's existing libraries. Do not add an animation or 3D dependency when CSS or an installed library covers the effect.
-7. Implement mobile and reduced-motion behavior at the same time as the desktop effect.
-8. Validate responsive layout, keyboard focus, contrast, hydration, cleanup, and production build.
+2. Preserve the project's existing colors, typography, and component language unless the user requests a redesign.
+3. Define one visual idea and one hero effect. Avoid stacking unrelated effects.
+4. Read [design-system.md](references/design-system.md) for adaptive theming, composition, and effect integration.
+5. Read [motion-and-3d.md](references/motion-and-3d.md) when adding animation, scroll choreography, shaders, particles, or WebGL.
+6. Read [performance.md](references/performance.md) before implementing or reviewing any continuous animation.
+7. Read [clean-code.md](references/clean-code.md) before choosing dependencies, abstractions, or file structure.
+8. Implement mobile and reduced-motion behavior with the desktop effect.
+9. Validate responsive layout, keyboard focus, contrast, hydration, cleanup, and production build.
 
 ## Composition Rules
 
-- Alternate immersive near-black stages with calm editorial-white sections.
-- Use amber as a signal, not a fill: highlights, particles, focus rings, separators, and primary actions.
-- Pair a geometric sans for structure with an italic display serif for emotional emphasis.
-- Build hierarchy through scale, whitespace, sticky composition, and asymmetry before borders or shadows.
+- Derive shader colors, glows, text contrast, and transparent layers from the host project's tokens.
+- Do not introduce black, white, amber, gradients, or a new font unless they belong to the brief.
 - Keep one dominant focal object per viewport.
-- Use oversized typography as scenery; keep supporting copy narrow and readable.
-- Prefer full-bleed stages, sticky split layouts, and image-led case-study rows over generic card grids.
-- Use rounded geometry deliberately: pills for actions, large soft radii for media, circles for micro-controls.
+- Protect content readability with placement, masking, contrast, or a local scrim.
+- Preserve the host project's spacing, shape, typography, and layout language.
+- Recompose effects for mobile instead of shrinking desktop geometry.
+
+## Clean-Code Rules
+
+- Understand the complete render and scroll flow before editing.
+- Reuse an existing helper, component, token, or installed library before creating anything.
+- Prefer CSS and browser APIs before JavaScript animation; prefer an installed dependency before adding one.
+- Keep the smallest number of effects, components, files, props, and abstractions that solve the request.
+- Give each animation one owner and each resource one lifecycle.
+- Fix shared root causes instead of adding guards to every caller.
+- Add one focused check for non-trivial animation or state logic.
+- Record deliberate performance ceilings and their upgrade path in a `ponytail:` comment.
 
 ## Motion Rules
 

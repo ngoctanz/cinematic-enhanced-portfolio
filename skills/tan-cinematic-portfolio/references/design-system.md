@@ -1,81 +1,76 @@
-# Design System
+# Adaptive Composition and Theming
 
-## Visual Direction
+## Preserve the Host Brand
 
-The style is a hybrid of:
+Treat the existing product or portfolio as the source of truth. Inspect:
 
-- cinematic/Awwwards portfolio staging;
-- editorial light-theme case studies;
-- sci-fi particle and shader imagery;
-- restrained luxury branding through warm amber, serif italics, and large whitespace.
+- CSS variables and design tokens;
+- current background and surface hierarchy;
+- text and accent colors;
+- font loading and type scale;
+- radius, border, and shadow language;
+- existing component variants;
+- light, dark, and system themes.
 
-The emotional arc alternates “void and energy” with “clarity and proof.” Dark sections establish identity and spectacle; white sections explain experience and work.
+Do not impose a predefined palette, background, gradient, or font. Effects must inherit the interface rather than repaint it.
 
-## Palette
+## Map Tokens Into Effects
 
-Core colors:
+Prefer CSS custom properties so DOM and WebGL share one theme:
 
-| Role | Value | Usage |
-| --- | --- | --- |
-| Deep stage | `#020202` | Primary cinematic background |
-| Pure black | `#000000` | Root background, high contrast |
-| Elevated dark | `#0a0a0a` / `#111111` | Cards, modal, dark controls |
-| Paper | `#ffffff` | Editorial sections |
-| Ink | `#111111` / `#222222` | Headings on paper |
-| Body gray | `#555555` / `#666666` | Supporting copy |
-| Line gray | `#b0b5b9` | Quiet separators |
-| Soft media gray | `#e0e3e5` | Project image beds |
-| Signature amber | `#ffaa40` | Brand signal |
-| Deep amber | `#ff8800` / `#d97706` | Gradient endpoint and accessible icon tone |
+```css
+:root {
+  --effect-primary: var(--color-accent);
+  --effect-secondary: var(--color-foreground);
+  --effect-background: var(--color-background);
+  --effect-muted: var(--color-muted);
+}
+```
 
-Use purple only as a rare atmospheric secondary accent. Avoid broad rainbow gradients. Amber-to-white or amber-to-dark transitions fit the identity.
+Pass resolved tokens into shader uniforms or Three.js colors. When themes can change at runtime, update uniforms without rebuilding geometry.
 
-## Typography
+Derive:
 
-- Primary: Outfit, weights 400–900. Use for headings, body, controls, and oversized display words.
-- Accent: Playfair Display, normal/italic, weights 400–800. Use italic for one meaningful phrase, never whole paragraphs.
-- Technical labels: the platform monospace stack through `font-mono`.
-- Display treatment: tight tracking, `0.95–1.05` line-height, very large responsive sizing.
-- Body treatment: 14–20px, relaxed line-height, muted foreground, narrow measure around 28–40rem.
-- Labels: 10–14px, uppercase, `0.2em` tracking.
+- particle core and edge colors from primary/secondary accents;
+- fog and clear colors from the current surface;
+- glow opacity from background luminance;
+- text scrims from measured contrast needs;
+- borders and trails from muted foreground tokens.
 
-The contrast between geometric sans and expressive serif creates the premium signature. Do not introduce a third decorative family.
+Use hard-coded colors only for a deliberately fixed art direction requested by the user.
 
-## Spacing and Shape
+## Contrast Modes
 
-- Content max width: approximately 1400–1800px depending on stage.
-- Page gutters: 24px mobile, 48px tablet, 96px large desktop where composition permits.
-- Section rhythm: 96–128px for standard sections; viewport-height or multi-viewport stages for narrative scroll.
-- Media radius: 20–40px.
-- CTA radius: full pill or 32–40px.
-- Borders: low-contrast hairlines.
-- Shadows: sparse and diffuse; media hover may use one soft elevation.
+Choose blending from context:
+
+- Additive blending works for luminous particles on darker surfaces.
+- Normal alpha blending is more predictable on light or mixed surfaces.
+- Multiply-like dark particles may work on bright editorial surfaces.
+- Avoid `mix-blend-mode` when text or controls become unpredictable across sections.
+
+Test every effect against the actual surrounding content. A shader that looks good on black may disappear or bloom badly on another background.
 
 ## Layout Archetypes
 
-1. Hero stage: full viewport; copy occupies the left 50–60%; 3D focal object sits right/behind.
-2. Spatial marquee: oversized plane rotated in 3D with centered foreground copy.
-3. Scroll narrative: 300–400vh section with a sticky viewport and three content states.
-4. Project theatre: long sticky WebGL stage with oversized typography crossing the scene.
-5. Editorial work index: 45/55 sticky split; fixed heading left, vertical project stream right.
-6. Closing stage: centered CTA and orbital visual on a dark background.
+Use composition independently of palette:
 
-On mobile, move copy toward the bottom, reduce visual scale, add a contrast scrim, and collapse split layouts into a single stream.
+1. Hero stage: full viewport with one dominant 3D object and a protected copy area.
+2. Spatial marquee: oversized CSS perspective plane behind readable foreground content.
+3. Scroll narrative: tall outer section, sticky viewport, and two or three meaningful states.
+4. Project theatre: scroll-controlled 3D media path paired with semantic project links.
+5. Sticky split: fixed context on one side and a normal document flow on the other.
+6. Closing stage: restrained ambient effect supporting one clear action.
 
-## Component Language
+## Integration Rules
 
-- Primary CTA: white or amber pill, dark text, circular arrow capsule.
-- Secondary action: quiet underline or bordered white pill.
-- Skill cards: elevated-dark surface, low-opacity white border, large radius.
-- Project media: fixed aspect ratio, image zoom around 1.03, subtle inner ring.
-- Modal: near-black translucent panel, fine border, small amber top glow.
-- Header/cursor: mix-blend-difference for contrast over theme transitions.
+- Keep one dominant focal object per viewport.
+- Protect readable content with placement, masking, fog, or a local scrim—not a forced page-wide background.
+- Use oversized typography only when it matches the project's type system.
+- Keep supporting copy narrow and stable while the visual moves.
+- Preserve current radii and component shapes.
+- On mobile, recompose rather than shrinking desktop geometry.
+- Provide a static frame or lightweight CSS fallback.
 
-## Avoid
+## Source Palette as an Optional Example
 
-- Generic three-column card grids.
-- Amber covering large page areas.
-- Multiple competing serif phrases in one viewport.
-- Heavy shadows, generic glassmorphism, or blue SaaS gradients.
-- Decorative 3D without a narrative role.
-- Uniform dark sections with no editorial breathing room.
+The source portfolio uses near-black and editorial-white sections with amber accents, Outfit, and Playfair Display. These values explain the original screenshots only. They are not requirements of this skill and must not override another project's identity.
