@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tan Cinematic Portfolio"
+  short_description: "Build cinematic amber portfolio experiences"
+  default_prompt: "Use $tan-cinematic-portfolio to design a cinematic, high-performance portfolio page."
