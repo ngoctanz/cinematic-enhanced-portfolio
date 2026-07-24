@@ -227,21 +227,126 @@ skills/tan-cinematic-portfolio/
 
 ## Installation
 
-Install interactively:
+The skill follows the shared `SKILL.md` format and can be installed for multiple coding agents with the same CLI.
+
+### Interactive Installation
+
+Let the CLI detect installed agents and ask where to place the skill:
 
 ```bash
 npx skills add ngoctanz/cinematic-enhanced-portfolio \
-  --skill tan-cinematic-portfolio \
-  --agent codex
+  --skill tan-cinematic-portfolio
 ```
 
-Install globally without prompts:
+### Install for One Agent
+
+| Agent | Command |
+| --- | --- |
+| Codex | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a codex` |
+| Claude Code | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a claude-code` |
+| Antigravity | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a antigravity` |
+| Antigravity CLI | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a antigravity-cli` |
+| Cursor | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a cursor` |
+| Gemini CLI | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a gemini-cli` |
+| GitHub Copilot | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a github-copilot` |
+| OpenCode | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a opencode` |
+| Cline | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a cline` |
+| Windsurf | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a windsurf` |
+| Kiro CLI | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a kiro-cli` |
+| Roo Code | `npx skills add ngoctanz/cinematic-enhanced-portfolio -s tan-cinematic-portfolio -a roo` |
+
+The long flags `--skill` and `--agent` are equivalent to `-s` and `-a`.
+
+### Install for Several Agents at Once
+
+Repeat `--agent` for each target:
 
 ```bash
 npx skills add ngoctanz/cinematic-enhanced-portfolio \
   --skill tan-cinematic-portfolio \
   --agent codex \
+  --agent claude-code \
+  --agent antigravity \
+  --agent cursor \
   -g -y
+```
+
+This installs the skill globally for all four agents without interactive prompts.
+
+### Install for Every Detected Agent
+
+```bash
+npx skills add ngoctanz/cinematic-enhanced-portfolio \
+  --skill tan-cinematic-portfolio \
+  --agent "*" \
+  -g -y
+```
+
+To install every skill from the repository for every detected agent:
+
+```bash
+npx skills add ngoctanz/cinematic-enhanced-portfolio --all
+```
+
+### Project or Global Scope
+
+Project installation is the default:
+
+```bash
+npx skills add ngoctanz/cinematic-enhanced-portfolio \
+  -s tan-cinematic-portfolio \
+  -a claude-code
+```
+
+Use `-g` when the skill should be available in every project:
+
+```bash
+npx skills add ngoctanz/cinematic-enhanced-portfolio \
+  -s tan-cinematic-portfolio \
+  -a claude-code \
+  -g
+```
+
+Common destinations include:
+
+| Agent | Project location | Global location |
+| --- | --- | --- |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Antigravity | `.agents/skills/` | `~/.gemini/antigravity/skills/` |
+| Antigravity CLI | `.agents/skills/` | `~/.gemini/antigravity-cli/skills/` |
+
+The CLI normally uses a canonical copy with agent-specific symlinks. Add `--copy` when the environment does not support symlinks:
+
+```bash
+npx skills add ngoctanz/cinematic-enhanced-portfolio \
+  -s tan-cinematic-portfolio \
+  -a claude-code \
+  --copy
+```
+
+### Use Without Installing
+
+Generate a temporary prompt:
+
+```bash
+npx skills use \
+  ngoctanz/cinematic-enhanced-portfolio@tan-cinematic-portfolio
+```
+
+Or start a supported agent with the temporary skill:
+
+```bash
+npx skills use ngoctanz/cinematic-enhanced-portfolio \
+  --skill tan-cinematic-portfolio \
+  --agent claude-code
+```
+
+### Manage Installed Skills
+
+List installed skills:
+
+```bash
+npx skills list
 ```
 
 Update an installed copy:
@@ -249,6 +354,14 @@ Update an installed copy:
 ```bash
 npx skills update tan-cinematic-portfolio
 ```
+
+Remove it:
+
+```bash
+npx skills remove tan-cinematic-portfolio
+```
+
+The core `SKILL.md` and reference files are cross-agent instructions. `agents/openai.yaml` adds Codex-specific presentation metadata and is harmless when another agent does not use it.
 
 ## Usage
 
